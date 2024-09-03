@@ -6,11 +6,14 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-// Connexion à MongoDB
-mongoose.connect('mongodb+srv://Uchiwa_Madara:Jsg1994ndl34amtp@cluster0.9do8t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-  { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+require('dotenv').config(); // Charger les variables d'environnement du fichier .env
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Connexion à MongoDB réussie !'))
+.catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // Middleware pour parser les requêtes JSON
 app.use(express.json());
