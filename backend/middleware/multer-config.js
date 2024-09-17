@@ -33,7 +33,7 @@ const resizeImage = (req, res, next) => {
   sharp(inputPath)
     .resize(260, 206, {
       fit: sharp.fit.cover,
-      position: sharp.strategy.entropy
+      position: sharp.strategy.entropy // (Choisit l'endroit le plus interessant de l'image, basé sur l'entropie (quantité de détails).)
     })
     .toFile(outputPath)
     .then(() => {
